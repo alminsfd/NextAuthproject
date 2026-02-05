@@ -1,7 +1,9 @@
 "use client";
 
+import { postUser } from "@/action/Server";
+
 const RegisterForm = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -15,11 +17,12 @@ const RegisterForm = () => {
       bloodgroup: form.bloodgroup.value,
     };
 
-    console.log("Submitted Data:", formData);
+    const res = await postUser(formData);
+    alert(res.message);
+    // form.reset();
   };
 
-  const inputClass =
-    "p-2 rounded border-2 bg-white text-black focus:outline-green-300";
+  const inputClass = "p-2 rounded border-2 bg-white text-black focus:outline-green-300";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg space-y-5">

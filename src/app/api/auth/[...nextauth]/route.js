@@ -5,13 +5,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const userList = [
      {
-          name: 'Almin',
+          username: 'Almin',
           password: 158988,
           Secretcode: 14656,
 
      },
      {
-          name: 'Tanvir',
+          username: 'Tanvir',
           password: 69958,
           Secretcode: 54569
      }
@@ -30,7 +30,7 @@ export const authOptions = {
                },
                async authorize(credentials, req) {
                     const { Secretcode, password, username } = credentials
-                    const user = userList.find(u => u.name == username)
+                    const user = userList.find(u => u.username == username)
                     if (!user) return null
                     const isPassworkOk = user.password == password
                     if (isPassworkOk) {
