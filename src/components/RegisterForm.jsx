@@ -16,7 +16,6 @@ const RegisterForm = () => {
       image: form.image.value,
       bloodgroup: form.bloodgroup.value,
     };
-
     const res = await postUser(formData);
     alert(res.message);
     // form.reset();

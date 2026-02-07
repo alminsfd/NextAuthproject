@@ -20,14 +20,14 @@ export const postUser = async (data) => {
           {
                ...data,
                password: hashingPassword,
-               createdAt: new Date(),
+               createdAt: new Date().toISOString(),
                role: 'user'
           }
      )
      if (res.acknowledged) {
           return {
                success: true,
-               message: `user registered successfully ${res.insertedId.toString()}` 
+               message: `user registered successfully ${res.insertedId.toString()}`
           }
      }
 }
