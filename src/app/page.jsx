@@ -2,13 +2,12 @@ import { RiNextjsLine } from "react-icons/ri";
 import { FaReact } from "react-icons/fa";
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { SiMongodb } from "react-icons/si";
-import Link from "next/link";
-import Loginbutton from "@/components/Loginbutton";
 import Usecard from "@/components/Usecard";
 import { getServerSession } from "next-auth";
 import Authbutton from "@/components/Authbutton";
+import { authOptions } from "@/lib/AuthOptions";
 export default async function Home() {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
 
   return (
     <div className="min-h-screen relative flex flex-col justify-center items-center gap-5 ">

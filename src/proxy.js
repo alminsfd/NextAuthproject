@@ -1,5 +1,4 @@
 import { getToken } from 'next-auth/jwt'
-import { forbidden } from 'next/navigation'
 import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
@@ -10,7 +9,7 @@ export async function proxy(req) {
      const IsUser = token?.role === 'user'
      const reqPath = req.nextUrl.pathname
      const AdminRoutes = ['/adDashboard']
-     console.log(reqPath)
+     // console.log(reqPath)
      const IsPrivate = Priveateroute.some(route => reqPath.startsWith(route))
      const IsAdmin = token?.role === 'admin'
      const IsAdminRoutes = AdminRoutes.some(req => reqPath.startsWith(req))
@@ -21,11 +20,9 @@ export async function proxy(req) {
           return NextResponse.redirect(loginUrl)
      }
      if (IsAuthenticated && !IsAdmin && !IsAdminRoutes) {
-          return NextResponse.redirect(new URL('/app/forbidden'))
+          return NextResponse.redirect(new URL('/app/forbidden', req.url))
      }
      return NextResponse.next()
-
-
 }
 
 
